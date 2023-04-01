@@ -4,12 +4,12 @@ public class User {
     // 主键
     Integer id;
     // 用户名
-    String user_name;
+    String userName;
     // 密码
     String password;
 
     // 是否为管理员
-    Boolean is_admin;
+    Boolean isAdmin;
     // 状态 1表示启用 0表示禁用
     Integer status;
 
@@ -17,9 +17,9 @@ public class User {
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", user_name='" + user_name + '\'' +
+                ", user_name='" + userName + '\'' +
                 ", password='" + password + '\'' +
-                ", is_admin=" + is_admin +
+                ", is_admin=" + isAdmin +
                 ", status=" + status +
                 '}';
     }
@@ -32,12 +32,12 @@ public class User {
         this.id = id;
     }
 
-    public String getUser_name() {
-        return user_name;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUser_name(String user_name) {
-        this.user_name = user_name;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getPassword() {
@@ -48,12 +48,12 @@ public class User {
         this.password = password;
     }
 
-    public Boolean getIs_admin() {
-        return is_admin;
+    public Boolean getIsAdmin() {
+        return isAdmin;
     }
 
-    public void setIs_admin(Boolean is_admin) {
-        this.is_admin = is_admin;
+    public void setIsAdmin(Boolean isAdmin) {
+        this.isAdmin = isAdmin;
     }
 
     public Integer getStatus() {

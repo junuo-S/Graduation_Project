@@ -14,7 +14,7 @@
 				<el-col :span="18">
 					<el-input placeholder="请输入验证码" v-model="checkCode" clearable></el-input>
 				</el-col>
-				<el-col :span="6"><img src="../asset/a.jpg"></el-col>
+				<el-col :span="6"><img src="../asset/a.jpg" ref="checkCode" @click="changeCheckCode"></el-col>
 			</el-form-item>
 		</el-form>
 		
@@ -27,6 +27,8 @@
 </template>
 
 <script>
+import axios from "axios";
+axios.defaults.withCredentials = true;
 export default {
 	// eslint-disable-next-line vue/multi-word-component-names
 	name: "Login",
@@ -44,8 +46,41 @@ export default {
 			this.checkCode = '';
 		},
 		login() {
-		
+			if(this.userName === '' || this.password === '' || this.checkCode === '') {
+				this.$message.warning("填写不完整");
+				return;
+			}
+			axios({
+				method: 'post',
+				url: 'http://localhost:9521/webservice_war/user/login',
+				headers: {'content-type': 'application/x-www-form-urlencoded'},
+				data: {userName:this.userName, password:this.password, checkCode:this.checkCode},
+			}).then(resp => {
+				// console.log(resp.data);
+				if(resp.data.statusCode === 0 && resp.data.msg === 'failed') {
+					this.$message.error(resp.data.bzText);
+				}
+				else if(resp.data.statusCode === 1 && resp.data.msg === 'success') {
+					this.$message.success(resp.data.bzText);
+					this.$store.commit('LoginOptions/SET_LOGIN', {
+						isLogin: true,
+						userName: resp.data.user.userName,
+						isAdmin: resp.data.user.isAdmin,
+						user: resp.data.user
+					});
+					this.$bus.$emit('readyLogin');
+				}
+			}, error => {
+				this.$message.error(error.message);
+			})
+		},
+		changeCheckCode() {
+			this.checkCode = '';
+			this.$refs.checkCode.src="http://localhost:9521/webservice_war/user/checkCode?" + Date.now();
 		}
+	},
+	mounted() {
+		this.changeCheckCode();
 	}
 }
 </script>

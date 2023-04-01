@@ -1,6 +1,9 @@
 // 该文件专门用于创建整个应用的路由器
 import VueRouter from "vue-router";
 import Login from "@/pages/Login.vue";
+import axios from "axios";
+import Vue from "vue";
+import Home from "@/components/Home.vue";
 
 const router = new VueRouter({
 	routes: [
@@ -9,6 +12,12 @@ const router = new VueRouter({
 			path: '/login',
 			component: Login,
 			meta: {title: '登录', needAuth: false},
+		},
+		{
+			name: 'home',
+			path: '/home',
+			component: Home,
+			meta: {title: '首页', needAuth: true},
 		}
 	],
 });

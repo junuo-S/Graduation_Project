@@ -68,7 +68,7 @@
 		
 		<el-form :model="newUser">
 			<el-form-item label="用户名" :label-width="formLabelWidth">
-				<el-input v-model="newUser.name" clearable></el-input>
+				<el-input v-model="newUser.userName" clearable></el-input>
 			</el-form-item>
 			<el-form-item label="密码" :label-width="formLabelWidth">
 				<el-input v-model="newUser.password" show-password></el-input>
@@ -104,15 +104,13 @@
 
 <script>
 
+import axios from "axios";
+
 export default {
 	name: "User-Manage",
 	data() {
 		return {
-			userData:
-				[
-					{id: 1, userName: 'junuo', password: '123', isAdmin: true, status: 1, hidden: '******'},
-					{id: 2, userName: 'junuo2', password: '1232', isAdmin: false, status: 1, hidden: '******'}
-				],
+			userData: [],
 			addDialogVisiable: false,
 			newUser: {},
 			formLabelWidth: 'auto'
@@ -123,25 +121,91 @@ export default {
 			if(condition) {
 				this.userData[index].hidden = this.userData[index].password;
 				e.target.src = require('../asset/password-on.png');
+				console.log(condition)
 			}
 			else {
 				this.userData[index].hidden = "******";
 				e.target.src = require('../asset/password-off.png');
+				console.log(condition)
 			}
 		},
 		handleDelete(row) {
-			// selectById
-			console.log(row)
+			// deleteById
+			if(this.$store.state.LoginOptions.userName === row.userName) {
+				this.$message.warning("当前用户不可删除");
+				return;
+			}
+			this.$confirm('确认删除?', '提示', {
+				confirmButtonText: '确定',
+				cancelButtonText: '取消',
+				type: 'warning'
+			}).then(() => {
+				
+				axios.get(
+					'http://localhost:9521/webservice_war/user/deleteById',
+					{params: {id:row.id}}
+				).then(resp => {
+						if(resp.data.statusCode === 1 && resp.data.msg === 'success') {
+							this.$message.success(resp.data.bzText);
+						}
+						else {
+							this.$message.warning(resp.bzText);
+						}
+						this.updateUserData();
+					},
+					error => {
+						this.$message.error(error.message);
+					});
+				
+			}).catch(() => {
+				this.$message.info('已取消删除');
+			});
 		},
 		updateUserData() {
-			// selectAll
+			// selectAllUser
+			axios({
+				url: 'http://localhost:9521/webservice_war/user/selectAllUser',
+				method: 'get'
+			}).then(resp => {
+				resp.data.forEach(user => {
+					user.hidden = '******';
+				});
+				this.userData = resp.data;
+			},
+			error => {
+				this.$message.error(error.message);
+			})
 		},
 		handleOpen() {
 			this.newUser = {};
 		},
 		handleAddUser() {
 			// addUser
+			if(!this.newUser.userName || this.newUser.userName === "" || !this.newUser.password || this.newUser.password === "") {
+				this.$message.warning("请将表单填写完整");
+				return;
+			}
+			
+			axios.post(
+				'http://localhost:9521/webservice_war/user/addUser',
+				{isAdmin:0, status: 0, ...this.newUser}
+			).then(resp =>  {
+				if(resp.data.statusCode === 1 && resp.data.msg === "success") {
+					this.$message.success(resp.data.bzText);
+				}
+				else {
+					this.$message.warning(resp.data.bzText);
+				}
+				this.updateUserData();
+				this.addDialogVisiable = false;
+			},
+			error => {
+				this.$message.error(error.message);
+			});
 		}
+	},
+	mounted() {
+		this.updateUserData();
 	}
 }
 </script>
@@ -151,8 +215,7 @@ export default {
 	width: 25px;
 	height: 25px;
 	cursor: pointer;
-	position: relative;
-	top: 6px;
+	float: right;
 }
 #del-btn {
 	background-color: rgb(245, 108, 108);

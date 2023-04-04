@@ -14,7 +14,7 @@ export default {
 	},
 	mounted() {
 		this.$bus.$on('readyLogin', this.readyLogin);
-		this.$router.replace({name: 'home'});
+		this.$router.replace({name: 'login'});
 	},
 	beforeDestroy() {
 		this.$bus.$off('readyLogin');

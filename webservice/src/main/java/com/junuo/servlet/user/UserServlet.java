@@ -18,6 +18,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Enumeration;
+import java.util.List;
 
 @WebServlet("/user/*")
 public class UserServlet extends BaseServlet{
@@ -88,5 +89,49 @@ public class UserServlet extends BaseServlet{
                 resp.getWriter().write("false");
             }
         }
+    }
+
+    public void selectAllUser(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        List<User> users = userService.selectAll();
+        resp.getWriter().write(JSON.toJSONString(users));
+    }
+
+    public void deleteById(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int id = Integer.parseInt(req.getParameter("id"));
+        int count = userService.deleteById(id);
+        ResponseStatus responseStatus = new ResponseStatus();
+        resp.setContentType("text/json;charset=utf-8");
+        if(count == 1) {
+            responseStatus.setStatusCode(1);
+            responseStatus.setMsg("success");
+            responseStatus.setBzText("删除成功");
+        }
+        else {
+            responseStatus.setStatusCode(0);
+            responseStatus.setMsg("failed");
+            responseStatus.setBzText("删除出错");
+        }
+        resp.getWriter().write(JSON.toJSONString(responseStatus));
+    }
+
+    public void addUser(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String line = req.getReader().readLine();
+        User user = JSON.parseObject(line, User.class);
+
+        int count = userService.insertUser(user);
+
+        ResponseStatus responseStatus = new ResponseStatus();
+        resp.setContentType("text/json;charset=utf-8");
+        if(count == 1) {
+            responseStatus.setStatusCode(1);
+            responseStatus.setMsg("success");
+            responseStatus.setBzText("添加成功");
+        }
+        else {
+            responseStatus.setStatusCode(0);
+            responseStatus.setMsg("failed");
+            responseStatus.setBzText("添加失败");
+        }
+        resp.getWriter().write(JSON.toJSONString(responseStatus));
     }
 }

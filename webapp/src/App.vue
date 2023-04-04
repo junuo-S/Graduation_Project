@@ -1,7 +1,5 @@
 <template>
-	<div>
-		<router-view></router-view>
-	</div>
+	<router-view></router-view>
 </template>
 
 <script>
@@ -16,7 +14,7 @@ export default {
 	},
 	mounted() {
 		this.$bus.$on('readyLogin', this.readyLogin);
-		this.$router.replace({name: 'login'});
+		this.$router.replace({name: 'home'});
 	},
 	beforeDestroy() {
 		this.$bus.$off('readyLogin');

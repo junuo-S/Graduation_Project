@@ -4,6 +4,7 @@ import Login from "@/pages/Login.vue";
 import axios from "axios";
 import Vue from "vue";
 import Home from "@/components/Home.vue";
+import UserManage from "@/pages/User-Manage.vue";
 
 const router = new VueRouter({
 	routes: [
@@ -18,6 +19,14 @@ const router = new VueRouter({
 			path: '/home',
 			component: Home,
 			meta: {title: '首页', needAuth: true},
+			children: [
+				{
+					name: 'userManage',
+					path: 'userManage',
+					component: UserManage,
+					meta: {title: '用户管理', needAuth: true},
+				}
+			]
 		}
 	],
 });

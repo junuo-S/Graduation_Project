@@ -13,17 +13,6 @@ public class User {
     // 状态 1表示启用 0表示禁用
     Integer status;
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", user_name='" + userName + '\'' +
-                ", password='" + password + '\'' +
-                ", is_admin=" + isAdmin +
-                ", status=" + status +
-                '}';
-    }
-
     public Integer getId() {
         return id;
     }
@@ -48,12 +37,12 @@ public class User {
         this.password = password;
     }
 
-    public Boolean getIsAdmin() {
+    public Boolean getAdmin() {
         return isAdmin;
     }
 
-    public void setIsAdmin(Boolean isAdmin) {
-        this.isAdmin = isAdmin;
+    public void setAdmin(Boolean admin) {
+        isAdmin = admin;
     }
 
     public Integer getStatus() {
@@ -62,5 +51,16 @@ public class User {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", isAdmin=" + isAdmin +
+                ", status=" + status +
+                '}';
     }
 }

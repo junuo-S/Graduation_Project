@@ -1,0 +1,54 @@
+<template>
+	<el-menu
+		default-active="1"
+		class="el-menu-vertical-demo"
+		background-color="#545c64"
+		text-color="#fff"
+		active-text-color="#ffd04b">
+		
+		<el-menu-item index="1" @click="routeTo('userManage')">
+			<i class="el-icon-user-solid"></i>
+			<span slot="title">用户管理</span>
+		</el-menu-item>
+		<el-menu-item index="2">
+			<i class="el-icon-menu"></i>
+			<span slot="title">导航二</span>
+		</el-menu-item>
+		<el-menu-item index="3">
+			<i class="el-icon-document"></i>
+			<span slot="title">导航三</span>
+		</el-menu-item>
+		<el-menu-item index="4">
+			<i class="el-icon-setting"></i>
+			<span slot="title">导航四</span>
+		</el-menu-item>
+	</el-menu>
+</template>
+
+<script>
+import index from "vuex";
+import userManage from "@/pages/User-Manage.vue";
+
+export default {
+	name: "Nav-Menu",
+	computed: {
+		userManage() {
+			return userManage;
+		},
+		index() {
+			return index;
+		}
+	},
+	methods: {
+		routeTo(routeName) {
+			this.$bus.$emit('routeTo', routeName);
+		}
+	}
+}
+</script>
+
+<style scoped>
+.el-menu {
+	height: 100%;
+}
+</style>

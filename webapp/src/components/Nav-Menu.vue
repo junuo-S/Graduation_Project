@@ -10,9 +10,9 @@
 			<i class="el-icon-user-solid"></i>
 			<span slot="title">用户管理</span>
 		</el-menu-item>
-		<el-menu-item index="2">
-			<i class="el-icon-menu"></i>
-			<span slot="title">导航二</span>
+		<el-menu-item index="2" @click="routeTo('deviceManage')">
+			<i class="el-icon-cpu"></i>
+			<span slot="title">设备概览</span>
 		</el-menu-item>
 		<el-menu-item index="3">
 			<i class="el-icon-document"></i>

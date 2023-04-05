@@ -8,13 +8,12 @@ export default {
 	name: "App",
 	methods: {
 		readyLogin() {
-			console.log('readyLogin');
-			this.$router.replace({name: 'home'});
+			this.$router.push({name: 'home'});
 		}
 	},
 	mounted() {
 		this.$bus.$on('readyLogin', this.readyLogin);
-		this.$router.replace({name: 'login'});
+		this.$router.replace({name: 'deviceManage'});
 	},
 	beforeDestroy() {
 		this.$bus.$off('readyLogin');
@@ -24,6 +23,8 @@ export default {
 
 <style>
 * {
+	margin: 0;
+	padding: 0;
 	box-sizing: border-box;
 }
 </style>

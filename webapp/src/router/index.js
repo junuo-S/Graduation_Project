@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import Login from "@/pages/Login.vue";
 import Home from "@/components/Home.vue";
 import UserManage from "@/pages/User-Manage.vue";
+import DeviceManage from "@/pages/Device-Manage.vue";
 
 const router = new VueRouter({
 	routes: [
@@ -23,6 +24,12 @@ const router = new VueRouter({
 					path: 'userManage',
 					component: UserManage,
 					meta: {title: '用户管理', needAuth: true},
+				},
+				{
+					name: 'deviceManage',
+					path: 'deviceManage',
+					component: DeviceManage,
+					meta: {title: '设备概览', needAuth: true},
 				}
 			]
 		}

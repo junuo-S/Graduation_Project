@@ -1,8 +1,6 @@
 // 该文件专门用于创建整个应用的路由器
 import VueRouter from "vue-router";
 import Login from "@/pages/Login.vue";
-import axios from "axios";
-import Vue from "vue";
 import Home from "@/components/Home.vue";
 import UserManage from "@/pages/User-Manage.vue";
 

@@ -140,9 +140,8 @@ export default {
 				cancelButtonText: '取消',
 				type: 'warning'
 			}).then(() => {
-				
 				axios.get(
-					'http://localhost:9521/webservice_war/user/deleteById',
+					'/user/deleteById',
 					{params: {id:row.id}}
 				).then(resp => {
 						if(resp.data.statusCode === 1 && resp.data.msg === 'success') {
@@ -164,7 +163,7 @@ export default {
 		updateUserData() {
 			// selectAllUser
 			axios({
-				url: 'http://localhost:9521/webservice_war/user/selectAllUser',
+				url: '/user/selectAllUser',
 				method: 'get'
 			}).then(resp => {
 				resp.data.forEach(user => {
@@ -187,7 +186,7 @@ export default {
 			}
 			
 			axios.post(
-				'http://localhost:9521/webservice_war/user/addUser',
+				'/user/addUser',
 				{isAdmin:0, status: 0, ...this.newUser}
 			).then(resp =>  {
 				if(resp.data.statusCode === 1 && resp.data.msg === "success") {

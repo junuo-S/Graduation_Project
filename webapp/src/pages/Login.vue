@@ -52,7 +52,7 @@ export default {
 			}
 			axios({
 				method: 'post',
-				url: 'http://localhost:9521/webservice_war/user/login',
+				url: '/user/login',
 				headers: {'content-type': 'application/x-www-form-urlencoded'},
 				data: {userName:this.userName, password:this.password, checkCode:this.checkCode},
 			}).then(resp => {
@@ -76,7 +76,19 @@ export default {
 		},
 		changeCheckCode() {
 			this.checkCode = '';
-			this.$refs.checkCode.src="http://localhost:9521/webservice_war/user/checkCode?" + Date.now();
+			axios.get(
+				'/user/checkCode?' + Date.now(),
+				{responseType: "blob"}
+			).then(resp => {
+				let imageType = resp.headers["content-type"]; //获取图片类型
+				const blob = new Blob([resp.data], { type: imageType });
+				const imageUrl = (window.URL || window.webkitURL).createObjectURL(blob);
+				this.$refs.checkCode.src = imageUrl;
+			},
+			error => {
+				this.$message.warning(error.message);
+			})
+			//this.$refs.checkCode.src="/user/checkCode?" + Date.now();
 		}
 	},
 	mounted() {

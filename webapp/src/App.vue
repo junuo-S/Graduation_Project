@@ -8,12 +8,12 @@ export default {
 	name: "App",
 	methods: {
 		readyLogin() {
-			this.$router.push({name: 'home'});
+			this.$router.push({name: 'deviceManage'});
 		}
 	},
 	mounted() {
 		this.$bus.$on('readyLogin', this.readyLogin);
-		this.$router.replace({name: 'deviceManage'});
+		this.$router.replace({name: 'login'});
 	},
 	beforeDestroy() {
 		this.$bus.$off('readyLogin');

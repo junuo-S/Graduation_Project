@@ -120,6 +120,7 @@ export default {
 	text-align: center;
 	font-size: 30px;
 	font-family: "楷体";
+	margin-bottom: 40px;
 }
 .buttons {
 	text-align: center;

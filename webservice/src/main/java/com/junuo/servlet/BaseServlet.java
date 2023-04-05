@@ -1,4 +1,4 @@
-package com.junuo.servlet.user;
+package com.junuo.servlet;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

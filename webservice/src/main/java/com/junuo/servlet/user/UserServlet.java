@@ -4,24 +4,20 @@ import com.alibaba.fastjson2.JSON;
 import com.junuo.pojo.ResponseStatus;
 import com.junuo.pojo.User;
 import com.junuo.service.UserService;
+import com.junuo.servlet.BaseServlet;
 import com.junuo.utils.CheckCodeUtil;
 
 import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
-import javax.servlet.WriteListener;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
-import java.util.Enumeration;
 import java.util.List;
 
 @WebServlet("/user/*")
-public class UserServlet extends BaseServlet{
+public class UserServlet extends BaseServlet {
     private final UserService userService = new UserService();
 
     public void login(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

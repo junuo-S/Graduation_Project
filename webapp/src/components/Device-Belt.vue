@@ -22,6 +22,9 @@ export default {
 		belts() {
 			return this.$store.state.DeviceOptions.belts;
 		}
+	},
+	mounted() {
+		this.$store.dispatch('DeviceOptions/updateBelt');
 	}
 }
 </script>

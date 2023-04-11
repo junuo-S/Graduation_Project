@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.junuo.mapper.BeltMapper">
+    <resultMap id="beltResultMap" type="belt">
+        <result column="belt_id" property="beltId"/>
+    </resultMap>
+
+    <select id="selectAll" resultMap="beltResultMap">
+        select * from tb_belt;
+    </select>
+</mapper>

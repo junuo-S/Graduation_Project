@@ -2,7 +2,7 @@
 <div class="card">
 	<p class="title">{{belt.beltId}}</p>
 	<img src="../asset/belt.png" alt="">
-	<p class="footer">长度: {{belt.length}}</p>
+	<p class="footer">长度: {{belt.length}}m</p>
 </div>
 </template>
 

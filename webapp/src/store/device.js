@@ -5,6 +5,14 @@ export default {
 	actions: {
 		updateBelt(context, value) {
 			// 发送请求获取传送带数据
+			axios.get('/belt/selectAll').then(
+				resp => {
+					context.commit('UPDATE_BELT', resp.data);
+				},
+				error => {
+					console.log(error.message);
+				}
+			)
 		},
 		updateRobot(context, value) {
 			// 发送请求获取机器人数据
@@ -21,10 +29,14 @@ export default {
 	mutations: {
 		UPDATE_BELT(state, value) {
 			// 将传送带数据存储到state
+			value.forEach((belt) => {
+				belt.length = Number.parseInt(belt.length);
+			});
+			state.belts = value;
 		},
 		UPDATE_ROBOT(state, value) {
 			// 将机器人数据存储到state
-			state.robots = value.forEach((robot) => {
+			value.forEach((robot) => {
 				robot.battery = Number.parseInt(robot.battery);
 				robot.status = Number.parseInt(robot.status);
 			});

@@ -1,15 +1,17 @@
 <template>
 	<div class="device-manage">
 		<DeviceRobot/>
+		<DeviceBelt/>
 	</div>
 </template>
 
 <script>
 import DeviceRobot from "@/components/Device-Robot.vue";
+import DeviceBelt from "@/components/Device-Belt.vue";
 
 export default {
 	name: "Device-Manage",
-	components: {DeviceRobot},
+	components: {DeviceBelt, DeviceRobot},
 }
 </script>
 

@@ -13,7 +13,7 @@ export default {
 	},
 	mounted() {
 		this.$bus.$on('readyLogin', this.readyLogin);
-		this.$router.replace({name: 'login'});
+		this.$router.push({name: 'deviceManage'});
 	},
 	beforeDestroy() {
 		this.$bus.$off('readyLogin');

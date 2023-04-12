@@ -4,3 +4,4 @@ node_modules/
 nosession
 target/
 dist/
+test/

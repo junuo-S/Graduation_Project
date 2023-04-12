@@ -39,4 +39,24 @@ public class TaskServlet extends BaseServlet {
 		resp.setContentType("text/json;charset=utf-8");
 		resp.getWriter().write(JSON.toJSONString(responseStatus));
 	}
+
+	public void deleteById(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		String ids = req.getParameter("id");
+		int id = Integer.parseInt(ids);
+		int count = taskService.deleteById(id);
+		ResponseStatus responseStatus = new ResponseStatus();
+		if(count == 1) {
+			responseStatus.setStatusCode(1);
+			responseStatus.setMsg("success");
+			responseStatus.setBzText("删除成功");
+		}
+		else {
+			responseStatus.setStatusCode(0);
+			responseStatus.setMsg("failed");
+			responseStatus.setBzText("删除出错");
+		}
+
+		resp.setContentType("text/json;charset=utf-8");
+		resp.getWriter().write(JSON.toJSONString(responseStatus));
+	}
 }

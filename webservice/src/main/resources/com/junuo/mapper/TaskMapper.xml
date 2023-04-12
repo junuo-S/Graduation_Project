@@ -11,6 +11,9 @@
     <update id="setDone">
         update tb_task set status=0 where id=#{id};
     </update>
+    <delete id="deleteByIdInt">
+        delete from tb_task where id=#{id};
+    </delete>
     <select id="selectAll" resultMap="taskResultMap">
         select * from tb_task;
     </select>

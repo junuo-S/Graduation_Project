@@ -25,4 +25,13 @@ public class TaskService {
 		sqlSession.close();
 		return count;
 	}
+
+	public int deleteById(int id) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		TaskMapper mapper = sqlSession.getMapper(TaskMapper.class);
+		int count = mapper.deleteByIdInt(id);
+		sqlSession.commit();
+		sqlSession.close();
+		return count;
+	}
 }

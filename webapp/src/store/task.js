@@ -22,7 +22,6 @@ export default {
 				task.status = Number.parseInt(task.status);
 			})
 			state.tasks = value;
-			console.log(state.tasks);
 		}
 	},
 	state: {

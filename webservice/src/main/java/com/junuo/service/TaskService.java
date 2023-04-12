@@ -17,4 +17,12 @@ public class TaskService {
 		sqlSession.close();
 		return tasks;
 	}
+	public int setDone(int id) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		TaskMapper mapper = sqlSession.getMapper(TaskMapper.class);
+		int count = mapper.setDone(id);
+		sqlSession.commit();
+		sqlSession.close();
+		return count;
+	}
 }

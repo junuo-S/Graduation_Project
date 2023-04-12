@@ -40,7 +40,7 @@
 		<el-table-column
 			label="操作">
 			<template slot-scope="scope">
-				<el-button type="info" size="mini">结束</el-button>
+				<el-button type="info" size="mini" @click="handleDone(scope.row)">结束</el-button>
 				<el-button type="danger" size="mini">删除</el-button>
 			</template>
 		</el-table-column>
@@ -51,11 +51,36 @@
 
 <script>
 import moment from "moment";
+import axios from "axios";
 export default {
 	name: "Inspection-Task",
 	computed: {
 		tasks() {
 			return this.$store.state.TaskOptions.tasks;
+		}
+	},
+	methods: {
+		handleDone(row) {
+			if(row.status === 0) {
+				this.$message.info('已结束');
+				return;
+			}
+			axios.post('task/setDone',
+				{id: row.id},
+				{headers: {'content-type': 'application/x-www-form-urlencoded'}}).then(
+				resp => {
+					if(resp.data.statusCode === 1) {
+						this.$message.success(resp.data.bzText);
+						this.$store.dispatch('TaskOptions/updateTask');
+					}
+					else {
+						this.$message.warning(resp.data.bzText);
+					}
+				},
+				error => {
+					this.$message.error(error.message);
+				}
+			)
 		}
 	},
 	mounted() {

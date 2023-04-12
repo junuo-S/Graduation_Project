@@ -16,3 +16,5 @@ insert into tb_task values (6, 1677983647, 'robot-3', 'belt-3', 0);
 insert into tb_task values (7, 1678083647, 'robot-1', 'belt-1', 0);
 insert into tb_task values (8, 1678183647, 'robot-2', 'belt-2', 0);
 insert into tb_task values (9, 1678283647, 'robot-3', 'belt-3', 0);
+
+update tb_task set status=1 where id between 6 and 9;

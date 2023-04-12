@@ -14,13 +14,17 @@
 			<i class="el-icon-cpu"></i>
 			<span slot="title">设备概览</span>
 		</el-menu-item>
-		<el-menu-item index="3">
+		<el-menu-item index="3" @click="routeTo('inspectionTask')">
 			<i class="el-icon-document"></i>
-			<span slot="title">导航三</span>
+			<span slot="title">巡检计划</span>
 		</el-menu-item>
 		<el-menu-item index="4">
 			<i class="el-icon-setting"></i>
-			<span slot="title">导航四</span>
+			<span slot="title">实时信息</span>
+		</el-menu-item>
+		<el-menu-item index="5">
+			<i class="el-icon-setting"></i>
+			<span slot="title">传感器数据</span>
 		</el-menu-item>
 	</el-menu>
 </template>

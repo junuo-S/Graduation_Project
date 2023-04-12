@@ -4,6 +4,7 @@ import Login from "@/pages/Login.vue";
 import Home from "@/components/Home.vue";
 import UserManage from "@/pages/User-Manage.vue";
 import DeviceManage from "@/pages/Device-Manage.vue";
+import InspectionTask from "@/pages/Inspection-Task.vue";
 
 const router = new VueRouter({
 	routes: [
@@ -30,6 +31,12 @@ const router = new VueRouter({
 					path: 'deviceManage',
 					component: DeviceManage,
 					meta: {title: '设备概览', needAuth: true},
+				},
+				{
+					name: 'inspectionTask',
+					path: 'inspectionTask',
+					component: InspectionTask,
+					meta: {title: '巡检计划', needAuth: true},
 				}
 			]
 		}

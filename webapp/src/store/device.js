@@ -45,6 +45,6 @@ export default {
 	},
 	state: {
 		robots: [],
-		belts: [{beltId: 'belt-1', length: 10}]
+		belts: [],
 	}
 }

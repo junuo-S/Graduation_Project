@@ -18,12 +18,12 @@
 			<i class="el-icon-document"></i>
 			<span slot="title">巡检计划</span>
 		</el-menu-item>
-		<el-menu-item index="4">
-			<i class="el-icon-setting"></i>
+		<el-menu-item index="4" @click="routeTo('realTimeInfo')">
+			<i class="el-icon-s-grid"></i>
 			<span slot="title">实时信息</span>
 		</el-menu-item>
 		<el-menu-item index="5">
-			<i class="el-icon-setting"></i>
+			<i class="el-icon-s-data"></i>
 			<span slot="title">传感器数据</span>
 		</el-menu-item>
 	</el-menu>

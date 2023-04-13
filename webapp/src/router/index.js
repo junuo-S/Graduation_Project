@@ -5,6 +5,7 @@ import Home from "@/components/Home.vue";
 import UserManage from "@/pages/User-Manage.vue";
 import DeviceManage from "@/pages/Device-Manage.vue";
 import InspectionTask from "@/pages/Inspection-Task.vue";
+import RealTimeInfo from "@/pages/Real-Time-Info.vue";
 
 const router = new VueRouter({
 	routes: [
@@ -37,6 +38,12 @@ const router = new VueRouter({
 					path: 'inspectionTask',
 					component: InspectionTask,
 					meta: {title: '巡检计划', needAuth: true},
+				},
+				{
+					name: 'realTimeInfo',
+					path: 'realTimeInfo',
+					component: RealTimeInfo,
+					meta: {title: '实时信息', needAuth: true}
 				}
 			]
 		}

@@ -87,4 +87,11 @@ public class TaskServlet extends BaseServlet {
 		resp.setContentType("text/json;charset=utf-8");
 		resp.getWriter().write(JSON.toJSONString(responseStatus));
 	}
+
+	public void selectByBeltId(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		String beltId = req.getParameter("beltId");
+		Task task = taskService.selectByBeltId(beltId);
+		resp.setContentType("text/json;charset=utf-8");
+		resp.getWriter().write(JSON.toJSONString(task));
+	}
 }

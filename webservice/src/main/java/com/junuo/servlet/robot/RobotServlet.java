@@ -24,4 +24,11 @@ public class RobotServlet extends BaseServlet {
 		resp.setContentType("text/json;charset=utf-8");
 		resp.getWriter().write(JSON.toJSONString(freeRobots));
 	}
+
+	public void selectByRobotId(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		String robotId = req.getParameter("robotId");
+		Robot robot = robotService.selectByRobotId(robotId);
+		resp.setContentType("text/json;charset=utf-8");
+		resp.getWriter().write(JSON.toJSONString(robot));
+	}
 }

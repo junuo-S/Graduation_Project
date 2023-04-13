@@ -35,4 +35,12 @@ public class RobotService {
 		sqlSession.close();
 		return count;
 	}
+
+	public Robot selectByRobotId(String robotId) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		RobotMapper mapper = sqlSession.getMapper(RobotMapper.class);
+		Robot robot = mapper.selectByRobotId(robotId);
+		sqlSession.close();
+		return robot;
+	}
 }

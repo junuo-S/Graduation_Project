@@ -21,4 +21,7 @@
                         where tt.status=1
                 )
     </select>
+    <select id="selectByRobotId" resultMap="robotResultMap">
+        select * from tb_robot where robot_id=#{robotId};
+    </select>
 </mapper>

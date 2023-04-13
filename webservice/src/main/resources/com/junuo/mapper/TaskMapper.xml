@@ -8,6 +8,9 @@
         <result column="robot_id" property="robotId"/>
         <result column="belt_id" property="beltId"/>
     </resultMap>
+    <insert id="addTask">
+        insert into tb_task values (null, #{time}, #{robotId}, #{beltId}, 1);
+    </insert>
     <update id="setDone">
         update tb_task set status=0 where id=#{id};
     </update>

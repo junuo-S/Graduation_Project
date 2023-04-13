@@ -174,6 +174,21 @@ export default {
 				return;
 			}
 			let time = Math.floor(Date.now() / 1000);
+			axios.post('task/addTask', {...this.form, time}).then(
+				resp => {
+					if(resp.data.statusCode === 1) {
+						this.$message.success(resp.data.bzText);
+						this.$store.dispatch('TaskOptions/updateTask');
+					}
+					else {
+						this.$message.warning(resp.data.bzText);
+					}
+				},
+				error => {
+					this.$message.error(error.message);
+				}
+			);
+			this.dialogFormVisible = false;
 		},
 		updateFreeRobots() {
 			axios.get('/robot/getFreeRobots').then(

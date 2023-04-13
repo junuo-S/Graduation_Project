@@ -34,4 +34,13 @@ public class TaskService {
 		sqlSession.close();
 		return count;
 	}
+
+	public int addTask(Task task) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		TaskMapper mapper = sqlSession.getMapper(TaskMapper.class);
+		int count = mapper.addTask(task);
+		sqlSession.commit();
+		sqlSession.close();
+		return count;
+	}
 }

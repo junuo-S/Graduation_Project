@@ -19,4 +19,10 @@ public class BeltServlet extends BaseServlet {
 		List<Belt> belts = beltService.selectAll();
 		resp.getWriter().write(JSON.toJSONString(belts));
 	}
+
+	public void getFreeBelts(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		List<Belt> freeBelts = beltService.getFreeBelts();
+		resp.setContentType("text/json;charset=utf-8");
+		resp.getWriter().write(JSON.toJSONString(freeBelts));
+	}
 }

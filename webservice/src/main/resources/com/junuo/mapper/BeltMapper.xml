@@ -11,4 +11,11 @@
     <select id="selectAll" resultMap="beltResultMap">
         select * from tb_belt;
     </select>
+    <select id="getFreeBelts" resultMap="beltResultMap">
+        select tb.* from tb_belt tb
+            where tb.belt_id not in (
+                select tt.belt_id from tb_task tt
+                    where tt.status=1
+                )
+    </select>
 </mapper>

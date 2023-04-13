@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface RobotMapper {
 	List<Robot> selectAll();
+	List<Robot> getFreeRobots();
 }

@@ -5,17 +5,17 @@
 
 <mapper namespace="com.junuo.mapper.RobotMapper">
     <resultMap id="robotResultMap" type="robot">
-        <!--
-               id：完成主键字段的映射
-                   column：表的列名
-                   property：实体类的属性名
-               result：完成一般字段的映射
-                   column：表的列名
-                   property：实体类的属性名
-           -->
         <result column="robot_id" property="robotId"/>
     </resultMap>
+
     <select id="selectAll" resultMap="robotResultMap">
         select * from tb_robot;
+    </select>
+    <select id="getFreeRobots" resultMap="robotResultMap">
+        select tr.* from tb_robot tr
+            where tr.robot_id not in (
+                select tt.robot_id from tb_task tt
+                        where tt.status=1
+                )
     </select>
 </mapper>

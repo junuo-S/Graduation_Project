@@ -18,4 +18,12 @@ public class BeltService {
 		sqlSession.close();
 		return belts;
 	}
+
+	public List<Belt> getFreeBelts() {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		BeltMapper mapper = sqlSession.getMapper(BeltMapper.class);
+		List<Belt> freeBelts = mapper.getFreeBelts();
+		sqlSession.close();
+		return freeBelts;
+	}
 }

@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface BeltMapper {
 	List<Belt> selectAll();
+
+	List<Belt> getFreeBelts();
 }

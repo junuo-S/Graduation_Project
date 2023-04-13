@@ -18,4 +18,10 @@ public class RobotServlet extends BaseServlet {
 		List<Robot> robots = robotService.selectAll();
 		resp.getWriter().write(JSON.toJSONString(robots));
 	}
+
+	public void getFreeRobots(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		List<Robot> freeRobots = robotService.getFreeRobots();
+		resp.setContentType("text/json;charset=utf-8");
+		resp.getWriter().write(JSON.toJSONString(freeRobots));
+	}
 }

@@ -18,4 +18,12 @@ public class RobotService {
 		sqlSession.close();
 		return robots;
 	}
+
+	public List<Robot> getFreeRobots() {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		RobotMapper mapper = sqlSession.getMapper(RobotMapper.class);
+		List<Robot> freeRobots = mapper.getFreeRobots();
+		sqlSession.close();
+		return freeRobots;
+	}
 }

@@ -58,7 +58,7 @@
 	<el-button type="primary" id="table-append" @click="addDialogVisiable = true">新增用户</el-button>
 	
 	<el-dialog
-		title="收货地址"
+		title="新增用户"
 		:visible.sync="addDialogVisiable"
 		width="30%"
 		center

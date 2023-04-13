@@ -10,4 +10,5 @@ public interface TaskMapper {
 	int setDone(@Param("id") int id);
 	int deleteByIdInt(@Param("id") int id);
 	int addTask(Task task);
+	Task selectRobotIdById(@Param("id") int id);
 }

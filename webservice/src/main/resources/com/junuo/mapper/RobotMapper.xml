@@ -7,6 +7,9 @@
     <resultMap id="robotResultMap" type="robot">
         <result column="robot_id" property="robotId"/>
     </resultMap>
+    <update id="setRunning">
+        update tb_robot set status=#{status} where robot_id=#{robotId};
+    </update>
 
     <select id="selectAll" resultMap="robotResultMap">
         select * from tb_robot;

@@ -43,4 +43,12 @@ public class TaskService {
 		sqlSession.close();
 		return count;
 	}
+
+	public String selectRobotIdById(int id) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		TaskMapper mapper = sqlSession.getMapper(TaskMapper.class);
+		String robotId = mapper.selectRobotIdById(id).getRobotId();
+		sqlSession.close();
+		return robotId;
+	}
 }

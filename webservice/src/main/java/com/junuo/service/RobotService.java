@@ -26,4 +26,13 @@ public class RobotService {
 		sqlSession.close();
 		return freeRobots;
 	}
+
+	public int setRunning(String robotId, int status) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		RobotMapper mapper = sqlSession.getMapper(RobotMapper.class);
+		int count = mapper.setRunning(robotId, status);
+		sqlSession.commit();
+		sqlSession.close();
+		return count;
+	}
 }

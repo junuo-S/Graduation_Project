@@ -45,7 +45,44 @@
 			</template>
 		</el-table-column>
 	</el-table>
-	<el-button type="primary" class="add-task">新增巡检任务</el-button>
+	<el-button type="primary" class="add-task" @click="handleOpenDialog">新增巡检任务</el-button>
+	
+	<el-dialog
+		title="新增巡检任务"
+		:visible.sync="dialogFormVisible"
+		width="30%"
+		append-to-body
+		center>
+		
+		<el-form :model="form">
+			<el-form-item label="空闲机器人" :label-width="formLabelWidth">
+				<el-select v-model="form.robotId" placeholder="请选择空闲机器人">
+					<el-option
+						v-for="(robot, index) in freeRobots"
+						:label="robot.robotId + ' [剩余电量:' + robot.battery + '%]'"
+						:value="robot.robotId"
+						:key="index"
+					>
+					</el-option>
+				</el-select>
+			</el-form-item>
+			<el-form-item label="空闲传送带" :label-width="formLabelWidth">
+				<el-select v-model="form.beltId" placeholder="请选择空闲传送带">
+					<el-option
+						v-for="(belt, index) in freeBelts"
+						:label="belt.beltId + ' [长度:' + belt.length + 'm]'"
+						:value="belt.beltId"
+						:key="index"
+					>
+					</el-option>
+				</el-select>
+			</el-form-item>
+		</el-form>
+		<div slot="footer" class="dialog-footer">
+			<el-button @click="dialogFormVisible = false">取 消</el-button>
+			<el-button type="primary" @click="handleAddTask">确 定</el-button>
+		</div>
+	</el-dialog>
 </div>
 </template>
 
@@ -54,6 +91,18 @@ import moment from "moment";
 import axios from "axios";
 export default {
 	name: "Inspection-Task",
+	data() {
+		return {
+			dialogFormVisible: false,
+			formLabelWidth: '120px',
+			form: {
+				robotId: '',
+				beltId: '',
+			},
+			freeRobots: [],
+			freeBelts: [],
+		}
+	},
 	computed: {
 		tasks() {
 			return this.$store.state.TaskOptions.tasks;
@@ -65,21 +114,27 @@ export default {
 				this.$message.info('已结束');
 				return;
 			}
-			axios.post('task/setDone',
-				{id: row.id},
-				{headers: {'content-type': 'application/x-www-form-urlencoded'}}).then(
-				resp => {
-					if(resp.data.statusCode === 1) {
-						this.$message.success(resp.data.bzText);
-						this.$store.dispatch('TaskOptions/updateTask');
-					}
-					else {
-						this.$message.warning(resp.data.bzText);
-					}
-				},
-				error => {
-					this.$message.error(error.message);
+			this.$confirm("确认结束任务？", '提示', {type: "warning"}).then(
+				() => {
+					axios.post('task/setDone',
+						{id: row.id},
+						{headers: {'content-type': 'application/x-www-form-urlencoded'}}).then(
+						resp => {
+							if(resp.data.statusCode === 1) {
+								this.$message.success(resp.data.bzText);
+								this.$store.dispatch('TaskOptions/updateTask');
+							}
+							else {
+								this.$message.warning(resp.data.bzText);
+							}
+						},
+						error => {
+							this.$message.error(error.message);
+						}
+					)
 				}
+			).catch(
+				() => {this.$message.info('已取消结束任务');}
 			)
 		},
 		handleDelete(row) {
@@ -104,6 +159,40 @@ export default {
 				}
 			).catch(
 				() => {this.$message.info("已取消删除");}
+			)
+		},
+		handleOpenDialog() {
+			this.updateFreeRobots();
+			this.updateFreeBelts();
+			this.form.robotId = '';
+			this.form.beltId = '';
+			this.dialogFormVisible = true;
+		},
+		handleAddTask() {
+			if(this.form.beltId === '' || this.form.robotId === '') {
+				this.$message.warning("请选择机器人和传送带");
+				return;
+			}
+			let time = Math.floor(Date.now() / 1000);
+		},
+		updateFreeRobots() {
+			axios.get('/robot/getFreeRobots').then(
+				resp => {
+					this.freeRobots = resp.data;
+				},
+				error => {
+					this.$message.error(error.message);
+				}
+			)
+		},
+		updateFreeBelts() {
+			axios.get('/belt/getFreeBelts').then(
+				resp => {
+					this.freeBelts = resp.data;
+				},
+				error => {
+					this.$message.error(error.message);
+				}
 			)
 		}
 	},

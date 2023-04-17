@@ -8,7 +8,7 @@ create table if not exists tb_matter(
     height int not null ,
     info varchar(50)
 );
-
+drop table tb_matter;
 insert into tb_matter values (1, 1681387708, 'belt-1', 1, 30, 10, '表面光滑');
 insert into tb_matter values (2, 1681387708, 'belt-2', 1, 32, 9, '表面略显粗糙');
 insert into tb_matter values (3, 1681387708, 'belt-3', 0, 31, 11, '表面有很多斑点');

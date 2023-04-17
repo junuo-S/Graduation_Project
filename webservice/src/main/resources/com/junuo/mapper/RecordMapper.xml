@@ -11,4 +11,9 @@
     <select id="selectAllByRobotIdAndBeltId" resultMap="recordResultMapper">
         select * from tb_record where robot_id=#{robotId} and belt_id=#{beltId};
     </select>
+    <select id="selectOneByRobotIdAndBeltId" resultMap="recordResultMapper">
+        select * from tb_record
+            where robot_id=#{robotId} and belt_id=#{beltId}
+                limit #{beginIndex},1;
+    </select>
 </mapper>

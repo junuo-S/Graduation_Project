@@ -18,4 +18,11 @@ public class RecordService {
 		sqlSession.close();
 		return records;
 	}
+	public Record selectOneByRobotIdAndBeltId(String robotId, String beltId, int beginIndex) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		RecordMapper mapper = sqlSession.getMapper(RecordMapper.class);
+		Record record = mapper.selectOneByRobotIdAndBeltId(robotId, beltId, beginIndex);
+		sqlSession.close();
+		return record;
+	}
 }

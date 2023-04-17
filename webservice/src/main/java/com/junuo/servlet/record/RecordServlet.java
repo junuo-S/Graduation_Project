@@ -21,4 +21,14 @@ public class RecordServlet extends BaseServlet {
 		resp.setContentType("text/json;charset=utf-8");
 		resp.getWriter().write(JSON.toJSONString(records));
 	}
+
+	public void selectOneByRobotIdAndBeltId(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		String robotId = req.getParameter("robotId");
+		String beltId = req.getParameter("beltId");
+		String index = req.getParameter("beginIndex");
+		int beginIndex = Integer.parseInt(index);
+		Record record = recordService.selectOneByRobotIdAndBeltId(robotId, beltId, beginIndex);
+		resp.setContentType("text/json;charset=utf-8");
+		resp.getWriter().write(JSON.toJSONString(record));
+	}
 }

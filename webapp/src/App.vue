@@ -13,7 +13,7 @@ export default {
 	},
 	mounted() {
 		this.$bus.$on('readyLogin', this.readyLogin);
-		this.$router.push({name: 'inspectionTask'});
+		this.$router.push({name: 'realTimeInfo'});
 	},
 	beforeDestroy() {
 		this.$bus.$off('readyLogin');

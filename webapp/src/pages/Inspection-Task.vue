@@ -138,26 +138,27 @@ export default {
 				() => {this.$message.info('已取消结束任务');}
 			)
 		},
+		deleteTask(id) {
+			axios.post('/task/deleteById',
+				{id},
+				{headers: {'content-type': 'application/x-www-form-urlencoded'}}).then(
+				resp =>  {
+					if(resp.data.statusCode === 1) {
+						this.$store.dispatch('TaskOptions/updateTask');
+						this.$message.success(resp.data.bzText);
+					}
+					else {
+						this.$message.warning(resp.data.bzText);
+					}
+				},
+				error => {
+					this.$message.error(error.message);
+				}
+			)
+		},
 		handleDelete(row) {
 			this.$confirm('确认删除？', '提示', {type: "warning"}).then(
-				() => {
-					axios.post('/task/deleteById',
-						{id: row.id},
-						{headers: {'content-type': 'application/x-www-form-urlencoded'}}).then(
-						resp =>  {
-							if(resp.data.statusCode === 1) {
-								this.$store.dispatch('TaskOptions/updateTask');
-								this.$message.success(resp.data.bzText);
-							}
-							else {
-								this.$message.warning(resp.data.bzText);
-							}
-						},
-						error => {
-							this.$message.error(error.message);
-						}
-					)
-				}
+				() => {	this.deleteTask(row.id);}
 			).catch(
 				() => {this.$message.info("已取消删除");}
 			)
@@ -217,6 +218,8 @@ export default {
 	},
 	mounted() {
 		this.$store.dispatch('TaskOptions/updateTask');
+		this.$bus.$on('addTask', this.addTask);
+		this.$bus.$on('doneTask', this.doneTask);
 	},
 	filters: {
 		formatTime(time) {
@@ -225,6 +228,10 @@ export default {
 		getDoneStr(status) {
 			return status === 0 ? "已完成" : "进行中";
 		}
+	},
+	beforeDestroy() {
+		this.$bus.$off('addTask');
+		this.$bus.$off('doneTask');
 	}
 }
 </script>

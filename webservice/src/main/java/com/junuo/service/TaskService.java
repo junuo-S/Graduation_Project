@@ -59,4 +59,12 @@ public class TaskService {
 		sqlSession.close();
 		return task;
 	}
+
+	public Task selectByRobotIdAndBeltId(String robotId, String beltId) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		TaskMapper mapper = sqlSession.getMapper(TaskMapper.class);
+		Task task = mapper.selectByRobotIdAndBeltId(robotId, beltId);
+		sqlSession.close();
+		return task;
+	}
 }

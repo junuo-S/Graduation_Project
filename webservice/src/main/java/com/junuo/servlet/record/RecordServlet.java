@@ -36,6 +36,7 @@ public class RecordServlet extends BaseServlet {
 		String robotId = req.getParameter("robotId");
 		String beltId = req.getParameter("beltId");
 		String rollers = req.getParameter("roller");
+//		System.out.println(robotId + beltId + rollers);
 		int roller = Integer.parseInt(rollers);
 		Record record = recordService.selectLastByRobotIdAndBeltIdAndRoller(robotId, beltId, roller);
 		resp.setContentType("text/json;charset=utf-8");

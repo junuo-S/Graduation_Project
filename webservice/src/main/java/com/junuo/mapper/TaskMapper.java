@@ -12,4 +12,5 @@ public interface TaskMapper {
 	int addTask(Task task);
 	Task selectRobotIdById(@Param("id") int id);
 	Task selectByBeltId(@Param("beltId") String beltId);
+	Task selectByRobotIdAndBeltId(@Param("robotId") String robotId, @Param("beltId") String beltId);
 }

@@ -26,4 +26,8 @@
     <select id="selectByBeltId" resultMap="taskResultMap">
         select * from tb_task where belt_id=#{beltId}  and status=1;
     </select>
+    <select id="selectByRobotIdAndBeltId" resultMap="taskResultMap">
+        select * from tb_task
+            where robot_id=#{robotId} and belt_id=#{beltId} and status=1;
+    </select>
 </mapper>

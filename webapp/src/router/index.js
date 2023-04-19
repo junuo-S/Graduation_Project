@@ -8,6 +8,7 @@ import InspectionTask from "@/pages/Inspection-Task.vue";
 import RealTimeInfo from "@/pages/Real-Time-Info.vue";
 
 const router = new VueRouter({
+	base: 'graduation_app',
 	routes: [
 		{
 			name: 'login',

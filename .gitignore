@@ -5,3 +5,4 @@ nosession
 target/
 dist/
 test/
+webservice/src/main/webapp/

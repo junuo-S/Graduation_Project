@@ -43,4 +43,11 @@ public class RobotService {
 		sqlSession.close();
 		return robot;
 	}
+	public int getBattery(String robotId) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		RobotMapper mapper = sqlSession.getMapper(RobotMapper.class);
+		int battery = mapper.getBattery(robotId);
+		sqlSession.close();
+		return battery;
+	}
 }

@@ -24,4 +24,8 @@
     <select id="selectByRobotId" resultMap="robotResultMap">
         select * from tb_robot where robot_id=#{robotId};
     </select>
+    <select id="getBattery" resultType="java.lang.Integer">
+        select battery from tb_robot
+            where robot_id=#{robotId};
+    </select>
 </mapper>

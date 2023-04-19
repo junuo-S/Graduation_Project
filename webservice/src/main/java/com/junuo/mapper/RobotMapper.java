@@ -10,4 +10,5 @@ public interface RobotMapper {
 	List<Robot> getFreeRobots();
 	int setRunning(@Param("robotId") String robotId, @Param("status") int status);
 	Robot selectByRobotId(@Param("robotId") String robotId);
+	int getBattery(@Param("robotId") String robotId);
 }

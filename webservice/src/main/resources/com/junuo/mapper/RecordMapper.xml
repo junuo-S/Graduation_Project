@@ -16,4 +16,10 @@
             where robot_id=#{robotId} and belt_id=#{beltId}
                 limit #{beginIndex},1;
     </select>
+    <select id="selectLastByRobotIdAndBeltIdAndRoller" resultMap="recordResultMapper">
+        select * from tb_record
+            where robot_id=#{robotId} and belt_id=#{beltId} and roller=#{roller}
+                order by id desc
+            limit 0,1;
+    </select>
 </mapper>

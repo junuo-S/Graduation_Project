@@ -25,4 +25,12 @@ public class RecordService {
 		sqlSession.close();
 		return record;
 	}
+
+	public Record selectLastByRobotIdAndBeltIdAndRoller(String robotId, String beltId, int roller) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		RecordMapper mapper = sqlSession.getMapper(RecordMapper.class);
+		Record record = mapper.selectLastByRobotIdAndBeltIdAndRoller(robotId, beltId, roller);
+		sqlSession.close();
+		return record;
+	}
 }

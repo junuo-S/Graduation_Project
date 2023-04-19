@@ -8,4 +8,5 @@ import java.util.List;
 public interface RecordMapper {
 	List<Record> selectAllByRobotIdAndBeltId(@Param("robotId") String robotId, @Param("beltId") String beltId);
 	Record selectOneByRobotIdAndBeltId(@Param("robotId") String robotId, @Param("beltId") String beltId, @Param("beginIndex") int beginIndex);
+	Record selectLastByRobotIdAndBeltIdAndRoller(@Param("robotId") String robotId, @Param("beltId") String beltId, @Param("roller") int roller);
 }

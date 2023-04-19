@@ -109,30 +109,31 @@ export default {
 		}
 	},
 	methods: {
+		doneTask(id) {
+			axios.post('task/setDone',
+				{id},
+				{headers: {'content-type': 'application/x-www-form-urlencoded'}}).then(
+				resp => {
+					if(resp.data.statusCode === 1) {
+						this.$message.success(resp.data.bzText);
+						this.$store.dispatch('TaskOptions/updateTask');
+					}
+					else {
+						this.$message.warning(resp.data.bzText);
+					}
+				},
+				error => {
+					this.$message.error(error.message);
+				}
+			)
+		},
 		handleDone(row) {
 			if(row.status === 0) {
 				this.$message.info('已结束');
 				return;
 			}
 			this.$confirm("确认结束任务？", '提示', {type: "warning"}).then(
-				() => {
-					axios.post('task/setDone',
-						{id: row.id},
-						{headers: {'content-type': 'application/x-www-form-urlencoded'}}).then(
-						resp => {
-							if(resp.data.statusCode === 1) {
-								this.$message.success(resp.data.bzText);
-								this.$store.dispatch('TaskOptions/updateTask');
-							}
-							else {
-								this.$message.warning(resp.data.bzText);
-							}
-						},
-						error => {
-							this.$message.error(error.message);
-						}
-					)
-				}
+				() => {	this.doneTask(row.id); }
 			).catch(
 				() => {this.$message.info('已取消结束任务');}
 			)
@@ -168,13 +169,9 @@ export default {
 			this.form.beltId = '';
 			this.dialogFormVisible = true;
 		},
-		handleAddTask() {
-			if(this.form.beltId === '' || this.form.robotId === '') {
-				this.$message.warning("请选择机器人和传送带");
-				return;
-			}
+		addTask(robotId, beltId) {
 			let time = Math.floor(Date.now() / 1000);
-			axios.post('task/addTask', {...this.form, time}).then(
+			axios.post('task/addTask', {robotId, beltId, time}).then(
 				resp => {
 					if(resp.data.statusCode === 1) {
 						this.$message.success(resp.data.bzText);
@@ -188,6 +185,13 @@ export default {
 					this.$message.error(error.message);
 				}
 			);
+		},
+		handleAddTask() {
+			if(this.form.beltId === '' || this.form.robotId === '') {
+				this.$message.warning("请选择机器人和传送带");
+				return;
+			}
+			this.addTask(this.form.robotId, this.form.beltId);
 			this.dialogFormVisible = false;
 		},
 		updateFreeRobots() {

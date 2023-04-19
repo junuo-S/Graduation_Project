@@ -31,7 +31,7 @@
 				<span>状态:{{drawer.status | statusStr}}</span>
 			</el-row>
 			<el-row>
-				<button class="btn-task">查看巡检任务</button>
+				<button class="btn-task" @click="onCheck">查看巡检任务</button>
 			</el-row>
 		</el-drawer>
 	</el-row>
@@ -61,6 +61,9 @@ export default {
 		showDetail(robot) {
 			this.drawer = robot;
 			this.detailVisiable = true;
+		},
+		onCheck() {
+			this.$router.push({name: 'realTimeInfo'});
 		}
 	},
 	filters: {

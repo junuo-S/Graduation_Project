@@ -2,6 +2,8 @@
 <div>
 	<RealTimeInfoBanner/>
 	<RealTimeRecord robotId="robot-1" beltId="belt-1"/>
+	<RealTimeRecord robotId="robot-2" beltId="belt-2"/>
+	<RealTimeRecord robotId="robot-3" beltId="belt-3"/>
 </div>
 </template>
 

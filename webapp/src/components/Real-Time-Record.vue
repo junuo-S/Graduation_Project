@@ -155,6 +155,7 @@ export default {
 			this.stopAllTimer();
 			this.watching = false;
 			this.$refs['log-ul'].children[this.currentIndex].className = '';
+			this.checkRet[this.currentIndex].bzText = '待检测';
 			this.robotImgTo(0);
 			this.isChecking = false;
 			this.currentIndex = 0;
@@ -219,7 +220,7 @@ export default {
 			).then(
 				resp => {
 					let time = moment(record.time*1000).format("YYYY-MM-DD hh:mm:ss");
-					this.checkLog.push({
+					this.checkLog.unshift({
 						robotId: this.robotId,
 						time,
 						roller: record.roller,

@@ -1,6 +1,6 @@
 <template>
 <div>
-	<RealTimeInfoBanner/>
+	<RealTimeInfoBannerNew/>
 	<RealTimeRecord robotId="robot-1" beltId="belt-1"/>
 	<RealTimeRecord robotId="robot-2" beltId="belt-2"/>
 	<RealTimeRecord robotId="robot-3" beltId="belt-3"/>
@@ -8,12 +8,12 @@
 </template>
 
 <script>
-import RealTimeInfoBanner from "@/components/Real-Time-Info-Banner.vue";
 import RealTimeRecord from "@/components/Real-Time-Record.vue";
+import RealTimeInfoBannerNew from "@/components/Real-Time-Info-Banner-New.vue";
 
 export default {
 	name: "Real-Time-Info",
-	components: {RealTimeInfoBanner, RealTimeRecord},
+	components: {RealTimeRecord, RealTimeInfoBannerNew},
 }
 </script>
 

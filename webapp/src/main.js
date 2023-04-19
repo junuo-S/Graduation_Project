@@ -14,6 +14,7 @@ Vue.use(VueRouter);
 Vue.use(ElementUI);
 
 axios.defaults.baseURL = "http://localhost:9521/webservice_war";
+// axios.defaults.baseURL = "http://www.junuo.club:8080/webservice";
 
 new Vue({
 	render: h => h(App),

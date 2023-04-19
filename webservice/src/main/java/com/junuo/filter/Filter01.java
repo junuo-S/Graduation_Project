@@ -16,6 +16,7 @@ public class Filter01 implements Filter {
         servletRequest.setCharacterEncoding("utf-8");
         HttpServletResponse resp = (HttpServletResponse) servletResponse;
         resp.setHeader("Access-Control-Allow-Origin", "http://localhost:8080");
+//        resp.setHeader("Access-Control-Allow-Origin", "http://www.junuo.club:8080");
         resp.setHeader("Access-Control-Allow-Credentials", "true");
         resp.setHeader("Access-Control-Allow-Headers", "Content-Type,Access-Token");
 

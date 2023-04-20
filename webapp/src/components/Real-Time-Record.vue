@@ -3,7 +3,7 @@
 	<div class="controls">
 		<span ref="light"></span>
 		<p>{{beltStatusStr}}</p>
-		<button ref="btn-start-stop" @click="onBtnStartStop">停止</button>
+		<button ref="btn-start-stop" @click="onBtnStartStop">启动</button>
 	</div>
 	<div class="rot-photo">
 		<ul ref="rot-ul" class="rot-ul">
@@ -70,7 +70,7 @@ export default {
 			drawer: false,
 			rotUlLeft: -893,
 			beltSpeed: 0.8,
-			beltStatus: 1,
+			beltStatus: 0,
 			robotImgLeft: 0,
 			isRobotMoving: false,
 			isChecking: false,
@@ -169,6 +169,7 @@ export default {
 					this.task = resp.data;
 				},
 				error => {
+					this.task = null;
 					this.$message.error(error.message);
 				}
 			).then(() => {
@@ -299,9 +300,9 @@ export default {
 .controls {
 	position: relative;
 	display: inline-block;
-	width: 100px;
+	width: 8%;
 	bottom: 20px;
-	margin: 5px 30px 0 30px;
+	margin: 5px 0 0 0;
 	text-align: center;
 }
 .controls span {
@@ -313,7 +314,7 @@ export default {
 	width: 30px;
 	height: 30px;
 	border-radius: 50%;
-	background-color: lightgreen;
+	background-color: deeppink;
 }
 .controls p {
 	font-family: 宋体;
@@ -333,7 +334,7 @@ export default {
 .rot-photo {
 	position: relative;
 	display: inline-block;
-	width: 893px;
+	width: 75%;
 	height: 107px;
 	overflow: hidden;
 	/*border: #ccc 1px solid;*/
@@ -348,11 +349,13 @@ export default {
 	left: -893px;
 }
 .more-info {
+	width: 12%;
 	display: inline-block;
 	position: relative;
 	top: -26px;
 	text-align: center;
-	margin-left: 30px;
+	margin-left: 20px;
+	/*background-color: orange;*/
 }
 .more-info span {
 	display: block;
@@ -363,10 +366,11 @@ export default {
 	width: 100px;
 }
 .footer {
-	margin-left: 160px;
+	margin-left: 8%;
+	width: 100%;
 }
 .log-ul {
-	width: 893px;
+	width: 75%;
 	list-style-type: none;
 }
 .log-ul li {
@@ -400,8 +404,10 @@ export default {
 	font-size: 16px;
 }
 #robot-box {
-	margin-left: 160px;
-	width: 893px;
+	margin-left: 8%;
+	margin-right: 0!important;
+	width: 75%;
+	overflow: hidden;
 }
 #robot {
 	position: relative;

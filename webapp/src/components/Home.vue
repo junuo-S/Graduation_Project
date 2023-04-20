@@ -2,12 +2,12 @@
 <div class="home">
 	<el-row>
 		<!--导航区-->
-		<el-col :span="4" class="nav">
+		<el-col :span="3" class="nav">
 			<NavMenu/>
 		</el-col>
 		
 		<!--展示区-->
-		<el-col :span="20" class="main">
+		<el-col :span="21" class="main">
 			<router-view></router-view>
 		</el-col>
 	</el-row>

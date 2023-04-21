@@ -22,7 +22,7 @@
 			<i class="el-icon-s-grid"></i>
 			<span slot="title">实时信息</span>
 		</el-menu-item>
-		<el-menu-item index="5">
+		<el-menu-item index="5" @click="routeTo('sensorData')">
 			<i class="el-icon-s-data"></i>
 			<span slot="title">传感器数据</span>
 		</el-menu-item>

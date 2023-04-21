@@ -6,6 +6,7 @@ import UserManage from "@/pages/User-Manage.vue";
 import DeviceManage from "@/pages/Device-Manage.vue";
 import InspectionTask from "@/pages/Inspection-Task.vue";
 import RealTimeInfo from "@/pages/Real-Time-Info.vue";
+import SensorData from "@/pages/Sensor-Data.vue";
 
 const router = new VueRouter({
 	base: 'graduation_app',
@@ -45,6 +46,12 @@ const router = new VueRouter({
 					path: 'realTimeInfo',
 					component: RealTimeInfo,
 					meta: {title: '实时信息', needAuth: true}
+				},
+				{
+					name: 'sensorData',
+					path: 'sensorData',
+					component: SensorData,
+					meta: {title: '传感器信息', needAuth: true}
 				}
 			]
 		}

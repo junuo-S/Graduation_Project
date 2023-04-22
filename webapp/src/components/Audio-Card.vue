@@ -1,5 +1,6 @@
 <template>
 	<div id="peak-container">
+		<p v-if="!peaks" class="loading"><i class="el-icon-loading"></i>Loading...</p>
 		<div id="zoomview-container" ref="zoomview"></div>
 		<div id="overview-container" ref="overview"></div>
 		<audio ref="audio" id="audio" muted>
@@ -66,6 +67,10 @@ export default {
 </script>
 
 <style>
+.loading {
+	position: absolute;
+	top: 50%;
+}
 #peak-container {
 	/*width: 30%;*/
 	/*border: lightskyblue 1px solid;*/

@@ -4,7 +4,9 @@
 		<SensorBanner title="音频数据"/>
 	</el-col>
 	<el-col :span="23">
-		<AudioCard/>
+		<keep-alive>
+			<AudioCard/>
+		</keep-alive>
 	</el-col>
 </el-row>
 </template>

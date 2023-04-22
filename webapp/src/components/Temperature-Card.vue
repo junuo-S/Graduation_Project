@@ -80,4 +80,7 @@ export default {
 	border: lightskyblue 1px solid;
 	overflow: auto;
 }
+#main canvas {
+	width: 100%;
+}
 </style>

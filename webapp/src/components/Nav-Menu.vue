@@ -1,12 +1,12 @@
 <template>
 	<el-menu
-		default-active="1"
+		default-active="4"
 		class="el-menu-vertical-demo"
 		background-color="#545c64"
 		text-color="#fff"
 		active-text-color="#ffd04b">
 		
-		<el-menu-item index="1" @click="routeTo('userManage')">
+		<el-menu-item index="1" v-if="isAdmin" @click="routeTo('userManage')">
 			<i class="el-icon-user-solid"></i>
 			<span slot="title">用户管理</span>
 		</el-menu-item>
@@ -32,6 +32,11 @@
 <script>
 export default {
 	name: "Nav-Menu",
+	computed: {
+		isAdmin() {
+			return this.$store.state.LoginOptions.isAdmin;
+		}
+	},
 	methods: {
 		routeTo(routeName) {
 			this.$bus.$emit('routeTo', routeName);

@@ -60,6 +60,7 @@ const router = new VueRouter({
 
 // 全局前置路由守卫
 router.beforeEach((to, from, next) => {
+	document.title = '基于web技术的皮带巡检机器人云平台';
 	next();
 });
 

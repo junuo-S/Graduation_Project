@@ -11,7 +11,7 @@ export default {
 	name: "Video-Card",
 	data() {
 		return {
-			baseUrl: 'http://www.junuo.club/video/',
+			baseUrl: 'http://www.junuo.club/media/',
 		}
 	},
 	props: ['videoName']

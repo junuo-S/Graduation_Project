@@ -346,7 +346,7 @@ export default {
 	position: relative;
 	list-style-type: none;
 	width: 1788px;
-	left: -893px;
+	left: -50%;
 }
 .more-info {
 	width: 12%;

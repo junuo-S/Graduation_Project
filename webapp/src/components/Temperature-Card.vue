@@ -17,7 +17,6 @@ export default {
 	},
 	methods: {
 		drawLine() {
-			this.charts = echarts.init(this.$refs.main)
 			let option = {
 				xAxis: {
 					type: 'category',
@@ -54,6 +53,7 @@ export default {
 	},
 	//调用
 	mounted() {
+		this.charts = echarts.init(this.$refs.main);
 		this.drawLine();
 		this.timer = setInterval(this.getData, 2000);
 	},

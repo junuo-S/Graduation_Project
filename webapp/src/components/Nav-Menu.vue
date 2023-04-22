@@ -30,19 +30,8 @@
 </template>
 
 <script>
-import index from "vuex";
-import userManage from "@/pages/User-Manage.vue";
-
 export default {
 	name: "Nav-Menu",
-	computed: {
-		userManage() {
-			return userManage;
-		},
-		index() {
-			return index;
-		}
-	},
 	methods: {
 		routeTo(routeName) {
 			this.$bus.$emit('routeTo', routeName);

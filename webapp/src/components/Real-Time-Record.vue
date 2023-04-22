@@ -68,8 +68,8 @@ export default {
 	data() {
 		return {
 			drawer: false,
-			rotUlLeft: -893,
-			beltSpeed: 0.8,
+			rotUlLeft: -50,
+			beltSpeed: 0.2,
 			beltStatus: 0,
 			robotImgLeft: 0,
 			isRobotMoving: false,
@@ -103,9 +103,10 @@ export default {
 			let rotUl = this.$refs['rot-ul'];
 			this.beltTimer = setInterval(() => {
 				this.rotUlLeft+=this.beltSpeed;
-				if(this.rotUlLeft>0)
-					this.rotUlLeft=-893;
-				rotUl.style.left=this.rotUlLeft+'px';
+				if(this.rotUlLeft>0) {
+					this.rotUlLeft = -49.05;
+				}
+				rotUl.style.left=this.rotUlLeft+'%';
 			}, 10);
 		},
 		stopBelt() {

@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="user-manage">
 	<el-table
 		:data="userData"
 		style="width: 100%"
@@ -210,6 +210,9 @@ export default {
 </script>
 
 <style scoped>
+.user-manage {
+	margin-top: 30px;
+}
 #password-view {
 	width: 25px;
 	height: 25px;

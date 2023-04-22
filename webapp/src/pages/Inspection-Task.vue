@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="inspection-task">
 	<el-table
 		:data="tasks"
 		stripe
@@ -237,6 +237,9 @@ export default {
 </script>
 
 <style scoped>
+.inspection-task {
+	margin-top: 30px;
+}
 .add-task {
 	margin-top: 20px;
 	position: relative;

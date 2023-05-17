@@ -1,8 +1,9 @@
 <template>
 <div class="video-card">
-	<video controls autoplay muted>
+	<video autoplay muted loop>
 		<source :src="baseUrl + videoName">
 	</video>
+	<p>{{title}}</p>
 </div>
 </template>
 
@@ -14,7 +15,7 @@ export default {
 			baseUrl: 'http://www.junuo.club/media/',
 		}
 	},
-	props: ['videoName']
+	props: ['videoName', 'title']
 }
 </script>
 
@@ -25,6 +26,12 @@ export default {
 	width: 28%;
 }
 video {
+	width: 90%;
+}
+p {
 	width: 100%;
+	font-family: 宋体;
+	font-size: 18px;
+	text-align: center;
 }
 </style>

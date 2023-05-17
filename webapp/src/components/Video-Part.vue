@@ -4,9 +4,9 @@
 		<SensorBanner title="摄像头数据"/>
 	</el-col>
 	<el-col :span="23">
-		<VideoCard videoName="学姐带你逛中南.mp4"/>
-		<VideoCard videoName="你丢过外卖吗？｜微电影《摇摆》-反网络暴力：不要以为你们没有拿刀就不是凶手 (1bU4y157za).mp4"/>
-		<VideoCard videoName="张哲瀚-龚俊《天涯客》.mp4"/>
+		<VideoCard videoName="belt-1.mp4" title="belt-1"/>
+		<VideoCard videoName="belt-2.mp4" title="belt-2"/>
+		<VideoCard videoName="belt-3.mp4" title="belt-3"/>
 	</el-col>
 </el-row>
 </template>

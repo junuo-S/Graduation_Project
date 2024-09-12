@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>毕设答辩资源</title>
+    <script src="./animate.js"></script>
+    <style>
+        *
+        {
+            margin: 0;
+            padding: 0;
+        }
+        body
+        {
+            background-color: black;
+        }
+        .c-nav
+        {
+            height: 42px;
+            width: 900px;
+            background-color: white;
+            position: relative;
+            margin: 100px auto;
+            border-radius: 5px;
+            background-image: url("images/rss.png");
+            background-repeat: no-repeat;
+            background-position: right;
+        }
+        .c-nav ul
+        {
+            list-style-type: none;
+            padding-left: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .c-nav ul li
+        {
+            float: left;
+            width: 73px;
+            line-height: 42px;
+            padding-left: 10px;
+            cursor: pointer;
+        }
+        .c-nav ul li a
+        {
+            text-decoration: none;
+            color: black;
+        }
+        .c-nav ul .current a
+        {
+            color: white;
+        }
+        .c-nav .clould
+        {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 83px;
+            height: 42px;
+            background: url("images/cloud.gif") no-repeat;
+        }
+    </style>
+</head>
+<body>
+<div class="c-nav">
+    <span class="clould"></span>
+    <ul>
+        <li class="current"><a href="http://www.junuo.club:8080" target="_blank">演示地址</a></li>
+        <li><a href="https://kdocs.cn/l/cab3KmGIAhtv" target="_blank">说明图片</a></li>
+        <li><a href="https://kdocs.cn/l/cd0To9AR0IGi" target="_blank">答辩PPT</a></li>
+        <li><a href="https://gitee.com/junuo-S/graduation_project" target="_blank">开源地址</a></li>
+        <li><a href="http://www.junuo.club/media/show.mp4" target="_blank">演示视频</a></li>
+    </ul>
+</div>
+</body>
+<script>
+    var c_nav = document.querySelector('.c-nav');
+    var lis = c_nav.querySelectorAll('li');
+    var cloud = c_nav.querySelector('.clould');
+    var current = 0;
+    var perWidth = lis[0].offsetWidth;
+    for(var i=0;i<lis.length;i++)
+    {
+        lis[i].setAttribute('index', i);
+        lis[i].addEventListener('mouseenter', function ()
+        {
+            var pos_cloud = this.getAttribute('index');
+            if(pos_cloud!=current)
+            {
+                lis[current].children[0].style.color = 'lightgreen';
+            }
+            animate(cloud, this.offsetLeft);
+        });
+
+        lis[i].addEventListener('mouseleave', function ()
+        {
+            lis[current].children[0].style.color = 'white';
+            animate(cloud, current*perWidth);
+        });
+
+        lis[i].addEventListener('click', function ()
+        {
+            lis[current].children[0].style.color = 'black';
+            current = this.getAttribute('index');
+            for(var j=0;j<lis.length;j++)
+            {
+                lis[j].className = '';
+            }
+            lis[current].className = 'current';
+        });
+    }
+</script>
+</html>

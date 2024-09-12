@@ -4,7 +4,7 @@
 		<div id="zoomview-container" ref="zoomview"></div>
 		<div id="overview-container" ref="overview"></div>
 		<audio ref="audio" id="audio" muted>
-			<source src="../asset/花僮-笑纳.mp3" type="audio/mpeg" />
+			<source src="../asset/huatong-xiaona.mp3" type="audio/mpeg" />
 		</audio>
 		<el-button
 			type="info"
